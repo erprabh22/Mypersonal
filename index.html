@@ -3,44 +3,88 @@
 <head>
 <title>Happy Valentine's Day ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body {
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#ff4e8a,#ff9a9e);
-  font-family:Arial;
-  text-align:center;
-  color:white;
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff4e8a, #ff9a9e);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
 }
-.card{
-  background:rgba(255,255,255,0.2);
-  padding:40px;
-  border-radius:20px;
+
+/* Card */
+.card {
+  position: relative;
+  z-index: 10;
+  background: rgba(255,255,255,0.2);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
 }
-button{
-  padding:12px 25px;
-  border:none;
-  border-radius:25px;
-  background:white;
-  color:#ff4e8a;
-  font-weight:bold;
-  cursor:pointer;
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: white;
+  color: #ff4e8a;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
-button:hover{
-  transform:scale(1.1);
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* Heart rain */
+.heart {
+  position: fixed;
+  top: -10px;
+  animation: fall linear forwards;
+  z-index: 1;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <div class="card">
-<h1>Happy Valentine’s Day ❤️</h1>
-<p>You make my world brighter every day.</p>
-<button onclick="alert('I miss you a lot jaana ❤️')">Click Me 💌</button>
+  <h1>Happy Valentine’s Day ❤️</h1>
+  <p>You make my world brighter every day.</p>
+  <button onclick="alert('I miss you a lot jaana ❤️, hope it makes you smile ')">Click Me 💌</button>
 </div>
+
+<script>
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 150);
+</script>
 
 </body>
 </html>
